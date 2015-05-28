@@ -1,7 +1,7 @@
 # Encoding: UTF-8
 #
 # Cookbook Name:: steam
-# Recipe:: default
+# Library:: steam_app
 #
 # Copyright 2015 Jonathan Hartman
 #
@@ -18,6 +18,25 @@
 # limitations under the License.
 #
 
-steam_app 'default' do
-  action :install
+require 'chef/resource/lwrp_base'
+
+class Chef
+  class Resource
+    # A Chef resource for the Steam app.
+    #
+    # @author Jonathan Hartman <j@p4nt5.com>
+    class SteamApp < Resource::LWRPBase
+      self.resource_name = :steam_app
+      actions :install, :remove
+      default_action :install
+
+      #
+      # Attribute for the app's installed status.
+      #
+      attribute :installed,
+                kind_of: [NilClass, TrueClass, FalseClass],
+                default: nil
+      alias_method :installed?, :installed
+    end
+  end
 end
