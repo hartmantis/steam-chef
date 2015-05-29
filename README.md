@@ -15,8 +15,7 @@ A Chef cookbook for installing Steam.
 Requirements
 ============
 
-This cookbook currently supports OS X only. Windows and Ubuntu support is
-coming.
+This cookbook currently supports OS X and Windows. Ubuntu support is coming.
 
 Usage
 =====
@@ -62,7 +61,11 @@ Providers
 
 ***Chef::Provider::SteamApp::MacOsX***
 
-Provider for the Mac OS X platform.
+Provider for Mac OS X platforms.
+
+***Chef::Provider::SteamApp::Windows***
+
+Provider for Windows platforms.
 
 ***Chef::Provider::SteamApp***
 

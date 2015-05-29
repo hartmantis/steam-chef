@@ -25,9 +25,9 @@ require_relative 'provider_steam_app'
 Chef::Platform.set(platform: :mac_os_x,
                    resource: :steam_app,
                    provider: Chef::Provider::SteamApp::MacOsX)
-# TODO: Chef::Platform.set(platform: :windows,
-#                    resource: :steam_app,
-#                    provider: Chef::Provider::SteamApp::Windows)
+Chef::Platform.set(platform: :windows,
+                   resource: :steam_app,
+                   provider: Chef::Provider::SteamApp::Windows)
 # TODO: Chef::Platform.set(platform: :ubuntu,
 #                    resource: :steam_app,
 #                    provider: Chef::Provider::SteamApp::Debian)
