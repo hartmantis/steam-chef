@@ -14,4 +14,10 @@ describe 'steam::app' do
       expect(subject).to be_installed
     end
   end
+
+  describe package('steam'), if: %w(ubuntu debian).include?(os[:family]) do
+    it 'is installed' do
+      expect(subject).to be_installed
+    end
+  end
 end

@@ -30,7 +30,6 @@ describe 'steam::provider_mapping' do
     let(:platform) { :ubuntu }
 
     it 'uses the Debian app provider' do
-      pending
       expect(app_provider).to eq(Chef::Provider::SteamApp::Debian)
     end
   end
@@ -39,7 +38,6 @@ describe 'steam::provider_mapping' do
     let(:platform) { :debian }
 
     it 'uses the Debian app provider' do
-      pending
       expect(app_provider).to eq(Chef::Provider::SteamApp::Debian)
     end
   end

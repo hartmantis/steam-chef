@@ -1,0 +1,8 @@
+# Accept the Steam license agreement:
+#   $ sudo debconf-show steam
+#     * steam/license:
+#     * steam/question: I AGREE
+#       steam/purge:
+steam steam/question select I AGREE
+#steam/license steam/license note
+#steam steam/purge none
