@@ -15,7 +15,9 @@ platforms:
     driver:
       box: roboticcheese/windows-8
   - name: ubuntu-14.04
-  - name: debian-7.8
+  - name: debian-8
+    driver:
+      box: boxcutter/debian80
 
 suites:
   - name: default
