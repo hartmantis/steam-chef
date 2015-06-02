@@ -29,48 +29,87 @@ class Chef
       #
       # @author Jonathan Hartman <j@p4nt5.com>
       class Debian < SteamApp
-        include Chef::DSL::IncludeRecipe
+        URL ||= 'https://steamcdn-a.akamaihd.net/client/installer/steam.deb'
+        PATH ||= '/usr/bin/steam'
 
-        # No URL or PATH--everything is handled by APT
+        include Chef::DSL::IncludeRecipe
 
         private
 
         #
-        # Set up Steam's APT repository and install their package
+        # Install dependencies, download the Steam package, and install it.
         #
         # (see SteamApp#install!)
         #
         def install!
-          add_repo
-          apt_package 'steam' do
-            response_file 'steam.seed'
-            action :install
-          end
+          resolve_dependencies
+          download_package
+          install_package
         end
 
         #
-        # Use an apt_package resource to uninstall Steam.
+        # Use a dpkg_package resource to uninstall Steam.
         #
         # (see SteamApp#remove!)
         #
         def remove!
-          apt_package 'steam' do
+          dpkg_package 'steam-launcher' do
             action :remove
           end
         end
 
         #
-        # Configure Steam's APT repository, making sure APT's cache is
-        # updated as well.
+        # Use a dpkg_package resource to install the .deb file.
         #
-        def add_repo
+        def install_package
+          s = download_path
+          dpkg_package 'steam-launcher' do
+            source s
+            action :install
+          end
+        end
+
+        #
+        # Use a remote_file resource to download the .deb to Chef's cache dir.
+        #
+        def download_package
+          remote_file download_path do
+            source URL
+            action :create
+            only_if { !::File.exist?(PATH) }
+          end
+        end
+
+        #
+        # Construct a download destination under Chef's cache dir.
+        #
+        # @return [String]
+        #
+        def download_path
+          ::File.join(Chef::Config[:file_cache_path], ::File.basename(URL))
+        end
+
+        #
+        # Ensure the steam package's dependencies are satisfied since we're
+        # installing a .deb directly with dpkg. The package depends on one of
+        # xterm, gnome-terminal, konsole, so only install xterm if neither of
+        # the others is present.
+        #
+        # TODO: The hardcoded package list is pretty ugly. Should either pull
+        # dependencies from the package file at runtime or wait for the APT
+        # repo maintainers to fix the bug that prevents us from using that
+        # (https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=772598)
+        #
+        def resolve_dependencies
           include_recipe 'apt'
-          apt_repository 'steam' do
-            uri 'http://repo.steampowered.com/steam'
-            components %w(precise steam)
-            key 'B05498B7'
-            keyserver 'keyserver.ubuntu.com'
-            action :add
+          %w(python libc6 python-apt xz-utils curl zenity).each do |p|
+            package p do
+              action :install
+            end
+          end
+          package 'xterm' do
+            action :install
+            not_if 'dpkg -s gnome-terminal || dpkg -s konsole'
           end
         end
       end
