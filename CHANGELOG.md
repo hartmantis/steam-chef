@@ -1,6 +1,9 @@
 Steam Cookbook CHANGELOG
 ========================
 
+v?.?.? (????-??-??)
+-------------------
+
 v0.1.0 (2015-06-02)
 -------------------
 - Initial release! Supports OS X, Windows, and Ubuntu/Debian!
