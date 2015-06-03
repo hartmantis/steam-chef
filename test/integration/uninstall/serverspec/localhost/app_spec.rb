@@ -11,7 +11,21 @@ describe 'steam::app' do
 
   describe package('Steam'), if: os[:family] == 'windows' do
     it 'is not installed' do
-      expect(subject).to be_installed
+      expect(subject).not_to be_installed
+    end
+  end
+
+  describe package('steam-launcher'),
+           if: %w(ubuntu debian).include?(os[:family]) do
+    it 'is not installed' do
+      expect(subject).not_to be_installed
+    end
+  end
+
+  # Just in case, check both package names it might be going by
+  describe package('steam'), if: %w(ubuntu debian).include?(os[:family]) do
+    it 'is not installed' do
+      expect(subject).not_to be_installed
     end
   end
 end

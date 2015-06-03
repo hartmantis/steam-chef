@@ -28,9 +28,9 @@ Chef::Platform.set(platform: :mac_os_x,
 Chef::Platform.set(platform: :windows,
                    resource: :steam_app,
                    provider: Chef::Provider::SteamApp::Windows)
-# TODO: Chef::Platform.set(platform: :ubuntu,
-#                    resource: :steam_app,
-#                    provider: Chef::Provider::SteamApp::Debian)
-# TODO: Chef::Platform.set(platform: :debian,
-#                    resource: :steam_app,
-#                    provider: Chef::Provider::SteamApp::Debian)
+Chef::Platform.set(platform: :ubuntu,
+                   resource: :steam_app,
+                   provider: Chef::Provider::SteamApp::Debian)
+Chef::Platform.set(platform: :debian,
+                   resource: :steam_app,
+                   provider: Chef::Provider::SteamApp::Debian)

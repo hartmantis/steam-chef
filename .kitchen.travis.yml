@@ -1,8 +1,17 @@
 ---
 driver:
   name: digitalocean
+  # debian-8 image doesn't exist in nyc2
+  region: nyc3
 
 platforms:
   - name: macosx
     driver:
       name: localhost
+  - name: ubuntu-14-04-x64
+  # The Debian 8 image doesn't have sudo installed
+  - name: debian-8-x64
+    provisioner:
+      sudo_command:
+    verifier:
+      sudo_command:
