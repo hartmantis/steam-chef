@@ -32,6 +32,8 @@ class Chef
                 'SteamSetup.exe'
         PATH ||= ::File.expand_path('/Program Files (x86)/Steam')
 
+        provides :steam_app, platform_family: 'windows'
+
         private
 
         #

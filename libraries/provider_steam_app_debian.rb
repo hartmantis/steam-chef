@@ -34,6 +34,8 @@ class Chef
 
         include Chef::DSL::IncludeRecipe
 
+        provides :steam_app, platform_family: 'debian'
+
         private
 
         #
