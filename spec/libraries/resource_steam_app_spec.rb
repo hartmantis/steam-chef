@@ -9,20 +9,19 @@ describe Chef::Resource::SteamApp do
 
   describe '#initialize' do
     it 'sets the correct resource name' do
-      expect(resource.instance_variable_get(:@resource_name)).to eq(:steam_app)
+      expect(resource.resource_name).to eq(:steam_app)
     end
 
     it 'sets the correct supported actions' do
-      expected = [:nothing, :install, :remove]
-      expect(resource.instance_variable_get(:@allowed_actions)).to eq(expected)
+      expect(resource.allowed_actions).to eq([:nothing, :install, :remove])
     end
 
     it 'sets the correct default action' do
-      expect(resource.instance_variable_get(:@action)).to eq(:install)
+      expect(resource.action).to eq([:install])
     end
 
     it 'sets the installed status to nil' do
-      expect(resource.instance_variable_get(:@installed)).to eq(nil)
+      expect(resource.installed).to eq(nil)
     end
   end
 

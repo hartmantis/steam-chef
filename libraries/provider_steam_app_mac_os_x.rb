@@ -31,6 +31,8 @@ class Chef
         URL ||= 'https://steamcdn-a.akamaihd.net/client/installer/steam.dmg'
         PATH ||= '/Applications/Steam.app'
 
+        provides :steam_app, platform_family: 'mac_os_x'
+
         private
 
         #
