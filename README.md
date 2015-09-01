@@ -1,12 +1,16 @@
 Steam Cookbook
 ==============
 [![Cookbook Version](https://img.shields.io/cookbook/v/steam.svg)][cookbook]
-[![Build Status](https://img.shields.io/travis/RoboticCheese/steam-chef.svg)][travis]
+[![Linux Build Status](https://img.shields.io/circleci/project/RoboticCheese/steam-chef.svg)][circle]
+[![OS X Build Status](https://img.shields.io/travis/RoboticCheese/steam-chef.svg)][travis]
+[![Windows Build Status](https://img.shields.io/appveyor/ci/RoboticCheese/steam-chef.svg)][appveyor]
 [![Code Climate](https://img.shields.io/codeclimate/github/RoboticCheese/steam-chef.svg)][codeclimate]
 [![Coverage Status](https://img.shields.io/coveralls/RoboticCheese/steam-chef.svg)][coveralls]
 
 [cookbook]: https://supermarket.chef.io/cookbooks/steam
+[circle]: https://circleci.com/gh/RoboticCheese/steam-chef
 [travis]: https://travis-ci.org/RoboticCheese/steam-chef
+[appveyor]: https://ci.appveyor.com/project/RoboticCheese/steam-chef
 [codeclimate]: https://codeclimate.com/github/RoboticCheese/steam-chef
 [coveralls]: https://coveralls.io/r/RoboticCheese/steam-chef
 
