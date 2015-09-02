@@ -1,0 +1,17 @@
+branches:
+  only:
+    - master
+
+cache:
+  - '%TEMP%\verifier\gems'
+
+install:
+  - cinst chefdk
+  - SET PATH=C:\opscode\chefdk\bin;%PATH%
+
+build_script:
+  - chef exec bundle update
+  - copy .kitchen.appveyor.yml .kitchen.local.yml
+
+test_script:
+  - chef exec bundle exec kitchen test -c 2
