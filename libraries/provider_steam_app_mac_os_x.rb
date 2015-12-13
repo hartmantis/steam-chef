@@ -18,6 +18,7 @@
 # limitations under the License.
 #
 
+require 'chef/mixin/shell_out'
 require 'chef/provider/lwrp_base'
 require_relative 'provider_steam_app'
 
@@ -28,6 +29,8 @@ class Chef
       #
       # @author Jonathan Hartman <j@p4nt5.com>
       class MacOsX < SteamApp
+        include Chef::Mixin::ShellOut
+
         URL ||= 'https://steamcdn-a.akamaihd.net/client/installer/steam.dmg'
         PATH ||= '/Applications/Steam.app'
 
@@ -43,11 +46,15 @@ class Chef
         # (see SteamApp#install!)
         #
         def install!
-          dmg_package 'Steam' do
+          remote_file download_path do
             source URL
-            accept_eula true
-            action :install
+            not_if { ::File.exist?(PATH) }
           end
+          attach_dmg
+          execute 'rsync -a /Volumes/Steam/Steam.app /Applications/' do
+            not_if { ::File.exist?(PATH) }
+          end
+          detach_dmg
         end
 
         #
@@ -64,6 +71,36 @@ class Chef
               action :delete
             end
           end
+        end
+
+        #
+        # Use an execute resource to attach the Steam .dmg file.
+        #
+        def attach_dmg
+          path = download_path
+          execute "echo Y | PAGER=true hdiutil attach '#{path}'" do
+            not_if "hdiutil info | grep -q 'image-path.*#{path}'"
+            not_if { ::File.exist?(PATH) }
+          end
+        end
+
+        #
+        # Use an execute resource to detach the Steam .dmg file.
+        #
+        def detach_dmg
+          path = download_path
+          execute 'hdiutil detach /Volumes/Steam' do
+            only_if "hdiutil info | grep -q 'image-path.*#{path}'"
+          end
+        end
+
+        #
+        # Construct a download path within Chef's cache dir.
+        #
+        # @return [String] a local .dmg download path
+        #
+        def download_path
+          ::File.join(Chef::Config[:file_cache_path], ::File.basename(URL))
         end
       end
     end
