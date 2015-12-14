@@ -1,9 +1,9 @@
 Steam Cookbook CHANGELOG
 ========================
 
-v?.?.? (????-??-??)
+v1.0.0 (2015-12-13)
 -------------------
-- Use Chef 12-style provider resolution
+- Use Chef 12-style provider resolution (breaking compatibility with Chef 11)
 - Fix issue with Steam .dmg package failing on OS X
 
 v0.1.0 (2015-06-02)
