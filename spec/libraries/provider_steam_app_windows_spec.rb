@@ -5,8 +5,9 @@ require_relative '../../libraries/provider_steam_app_windows'
 
 describe Chef::Provider::SteamApp::Windows do
   let(:name) { 'default' }
-  let(:new_resource) { Chef::Resource::SteamApp.new(name, nil) }
-  let(:provider) { described_class.new(new_resource, nil) }
+  let(:run_context) { ChefSpec::SoloRunner.new.converge.run_context }
+  let(:new_resource) { Chef::Resource::SteamApp.new(name, run_context) }
+  let(:provider) { described_class.new(new_resource, run_context) }
 
   describe '#install!' do
     it 'downloads and installs the package' do
@@ -75,8 +76,9 @@ describe Chef::Provider::SteamApp::Windows do
 
   describe '#download_path' do
     it 'returns a path under the Chef cache dir' do
-      expected = "#{Chef::Config[:file_cache_path]}/SteamSetup.exe"
-      expect(provider.send(:download_path)).to eq(expected)
+      expect(provider.send(:download_path)).to eq(
+        "#{Chef::Config[:file_cache_path]}/SteamSetup.exe"
+      )
     end
   end
 end

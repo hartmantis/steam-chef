@@ -1,6 +1,6 @@
 machine:
   ruby:
-    version: 2.1.6
+    version: 2.2.3
   services:
     - docker
 
@@ -8,8 +8,10 @@ dependencies:
   pre:
     - rvm install 2.0.0-p645
   override:
-    - bundle update
-    - rvm-exec 2.0.0-p645 bundle update
+    - gem which berkshelf || gem install -V berkshelf
+    - rvm-exec 2.0.0-p645 gem which berkshelf || rvm-exec 2.0.0-p645 gem install -V berkshelf
+    - bundle install --without=development integration
+    - rvm-exec 2.0.0-p645 bundle install --without=development integration
   cache_directories:
     - /home/ubuntu/.rvm/gems
 

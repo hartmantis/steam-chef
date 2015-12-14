@@ -5,8 +5,9 @@ require_relative '../../libraries/provider_steam_app_debian'
 
 describe Chef::Provider::SteamApp::Debian do
   let(:name) { 'default' }
-  let(:new_resource) { Chef::Resource::SteamApp.new(name, nil) }
-  let(:provider) { described_class.new(new_resource, nil) }
+  let(:run_context) { ChefSpec::SoloRunner.new.converge.run_context }
+  let(:new_resource) { Chef::Resource::SteamApp.new(name, run_context) }
+  let(:provider) { described_class.new(new_resource, run_context) }
 
   describe '.provides?' do
     let(:platform) { nil }
@@ -80,8 +81,9 @@ describe Chef::Provider::SteamApp::Debian do
 
   describe '#download_path' do
     it 'returns a path under the Chef cache dir' do
-      expected = "#{Chef::Config[:file_cache_path]}/steam.deb"
-      expect(provider.send(:download_path)).to eq(expected)
+      expect(provider.send(:download_path)).to eq(
+        "#{Chef::Config[:file_cache_path]}/steam.deb"
+      )
     end
   end
 
