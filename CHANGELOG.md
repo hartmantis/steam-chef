@@ -1,6 +1,9 @@
 Steam Cookbook CHANGELOG
 ========================
 
+v?.?.? (????-??-??)
+-------------------
+
 v1.0.0 (2015-12-13)
 -------------------
 - Use Chef 12-style provider resolution (breaking compatibility with Chef 11)
