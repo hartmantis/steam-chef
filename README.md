@@ -22,6 +22,10 @@ Requirements
 This cookbook currently supports each of Steam's platforms: OS X, Windows, and
 Ubuntu/Debian.
 
+As of v2.0.0, it requires either Chef 12.5 or the
+[compat_resource](https://supermarket.chef.io/cookbooks/compat_resource)
+cookbook.
+
 Usage
 =====
 
@@ -40,7 +44,8 @@ Resources
 
 ***steam_app***
 
-Used to install or remove the Steam app.
+A parent resource for managing the Steam app that all platform-specific
+resources inherit from.
 
 Syntax:
 
@@ -61,24 +66,17 @@ Attributes:
 |------------|------------|----------------------|
 | action     | `:install` | Action(s) to perform |
 
-Providers
-=========
+***steam_app_debian***
 
-***Chef::Provider::SteamApp::MacOsX***
+A Ubuntu/Debian implementation of the `steam_app` resource.
 
-Provider for Mac OS X platforms.
+***steam_app_mac_os_x***
 
-***Chef::Provider::SteamApp::Windows***
+An OS X implementation of the `steam_app` resource.
 
-Provider for Windows platforms.
+***steam_app_windows***
 
-***Chef::Provider::SteamApp::Debian***
-
-Provider for Ubuntu/Debian platforms.
-
-***Chef::Provider::SteamApp***
-
-A parent provider for all the platform-specific providers to subclass.
+A Windows implementation of the `steam_app` resource.
 
 Contributing
 ============

@@ -3,6 +3,8 @@ Steam Cookbook CHANGELOG
 
 v?.?.? (????-??-??)
 -------------------
+- Convert to custom resources (making the compat_resource cookbook a
+  requirement for Chef < 12.5
 
 v1.0.0 (2015-12-13)
 -------------------
