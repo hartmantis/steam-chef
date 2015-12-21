@@ -1,6 +1,9 @@
 Steam Cookbook CHANGELOG
 ========================
 
+v?.?.? (????-??-??)
+-------------------
+
 v2.0.0 (2015-12-20)
 -------------------
 - Convert to custom resources (making the compat_resource cookbook a
