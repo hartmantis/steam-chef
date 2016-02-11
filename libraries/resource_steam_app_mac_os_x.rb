@@ -30,7 +30,8 @@ class Chef
       include Chef::Mixin::ShellOut
 
       URL ||= 'https://steamcdn-a.akamaihd.net/client/installer/steam.dmg'
-      PATH ||= '/Applications/Steam.app'
+              .freeze
+      PATH ||= '/Applications/Steam.app'.freeze
 
       provides :steam_app, platform_family: 'mac_os_x'
 
