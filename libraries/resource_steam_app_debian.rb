@@ -28,7 +28,8 @@ class Chef
     # @author Jonathan Hartman <j@p4nt5.com>
     class SteamAppDebian < SteamApp
       URL ||= 'https://steamcdn-a.akamaihd.net/client/installer/steam.deb'
-      PATH ||= '/usr/bin/steam'
+              .freeze
+      PATH ||= '/usr/bin/steam'.freeze
 
       include Chef::DSL::IncludeRecipe
 

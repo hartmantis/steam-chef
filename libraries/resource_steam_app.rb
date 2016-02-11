@@ -30,8 +30,10 @@ class Chef
 
       %i(install remove).each do |a|
         action a do
-          fail(NotImplementedError,
-               "Action '#{a}' must be implemented for '#{self.class}' resource")
+          raise(
+            NotImplementedError,
+            "Action '#{a}' must be implemented for '#{self.class}' resource"
+          )
         end
       end
     end

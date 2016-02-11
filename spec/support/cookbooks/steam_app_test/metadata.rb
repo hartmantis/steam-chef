@@ -1,6 +1,5 @@
 # Encoding: UTF-8
-#
-# rubocop:disable SingleSpaceBeforeFirstArg
+
 name             'steam_app_test'
 maintainer       'Jonathan Hartman'
 maintainer_email 'j@p4nt5.com'
@@ -15,4 +14,3 @@ supports         'mac_os_x'
 supports         'windows'
 supports         'ubuntu'
 supports         'debian'
-# rubocop:enable SingleSpaceBeforeFirstArg

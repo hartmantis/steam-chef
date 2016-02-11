@@ -27,7 +27,8 @@ class Chef
     # @author Jonathan Hartman <j@p4nt5.com>
     class SteamAppWindows < SteamApp
       URL ||= 'https://steamcdn-a.akamaihd.net/client/installer/SteamSetup.exe'
-      PATH ||= ::File.expand_path('/Program Files (x86)/Steam')
+              .freeze
+      PATH ||= ::File.expand_path('/Program Files (x86)/Steam').freeze
 
       provides :steam_app, platform_family: 'windows'
 
