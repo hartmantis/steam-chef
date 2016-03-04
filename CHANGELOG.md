@@ -1,6 +1,9 @@
 Steam Cookbook CHANGELOG
 ========================
 
+Unreleased
+----------
+
 v2.1.0 (2016-03-04)
 -------------------
 - Bump apt dependency from 2.x to 3.x
