@@ -6,10 +6,10 @@ maintainer_email 'j@p4nt5.com'
 license          'apache2'
 description      'Installs/Configures Steam'
 long_description 'Installs/Configures Steam'
-version          '2.2.3'
+version          '2.2.4'
 
-depends          'dmg', '~> 3.0'    # 3.1 available
-depends          'windows', '~> 2.0.2' # 2.1.1 available
+depends          'dmg'      #, '~> 3.0'    # 3.1 available
+depends          'windows'  #, '~> 2.0.2' # 2.1.1 available
 depends          'apt'
 
 supports         'mac_os_x'
